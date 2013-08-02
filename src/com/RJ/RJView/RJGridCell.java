@@ -70,4 +70,7 @@ public class RJGridCell implements Comparable<RJGridCell>{
 	public int compareTo(RJGridCell another) {
 		return (this.name.compareTo(another.getName()));
 	}
+	public boolean isDir() {
+		return file.exists() && file.isDirectory();
+	}
 }

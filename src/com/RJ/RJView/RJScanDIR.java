@@ -49,6 +49,8 @@ public class RJScanDIR implements Runnable {
 		if (subs == null) {
 			return;
 		}
+		System.out.println("deal " + subFile.getAbsolutePath() + " have " + subs.length + " children");
+
 		ImageAdapter adapter = files.get(subFile.getAbsolutePath());
 		if (adapter != null) {
 			adapter.clearCachedFiles();
