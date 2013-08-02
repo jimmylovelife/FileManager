@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import android.graphics.Bitmap;
 
-public class RJGridCell {
+public class RJGridCell implements Comparable<RJGridCell>{
 	private String name;
 	private int type; //File type
 	private String description; 
@@ -64,5 +64,10 @@ public class RJGridCell {
 		this.path = file.getAbsolutePath();
 		this.name = file.getName();
 		//this.type = file.
+	}
+	
+	@Override
+	public int compareTo(RJGridCell another) {
+		return (this.name.compareTo(another.getName()));
 	}
 }

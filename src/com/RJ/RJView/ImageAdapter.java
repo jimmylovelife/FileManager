@@ -2,6 +2,8 @@ package com.RJ.RJView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -73,5 +75,10 @@ public class ImageAdapter extends BaseAdapter {
 			RJGridCell cell = new RJGridCell(file);
 			files.add(cell);
 		}
+		Collections.sort(files);
+	}
+
+	public void clearCachedFiles() {
+		files.clear();
 	}
 }

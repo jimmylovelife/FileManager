@@ -33,10 +33,36 @@ public class RJScanDIR implements Runnable {
 				tmp.addToFiles(subs);
 				files.put(root, tmp);
 				caller.dataReady();
-				break; //for test
+				for (File file : subs) {
+					if (file.exists() && file.isDirectory()) {
+						dealSubFiles(file);
+					}
+				}
 			}
+			break;
 		}
 		
+	}
+	@SuppressLint("NewApi")
+	private void dealSubFiles(File subFile) {
+		File [] subs = subFile.listFiles();
+		if (subs == null) {
+			return;
+		}
+		ImageAdapter adapter = files.get(subFile.getAbsolutePath());
+		if (adapter != null) {
+			adapter.clearCachedFiles();
+			adapter.addToFiles(subs);
+		} else {
+			adapter = new ImageAdapter(caller.getContext());
+			adapter.addToFiles(subs);
+			files.put(subFile.getAbsolutePath(), adapter);
+		}
+		
+		for (File sub : subs) {
+			if (sub.exists() && sub.isDirectory()) 
+				dealSubFiles(sub);
+		}
 	}
 
 }
