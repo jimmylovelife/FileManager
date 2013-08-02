@@ -19,6 +19,8 @@ public class ImageAdapter extends BaseAdapter {
 	private Context context;
 	private LayoutInflater inflater;
 	private ArrayList<RJGridCell> files;
+	private ImageAdapter father;
+	private String path;
 	
 	private class GridItem {
 		ImageView icon;
@@ -80,5 +82,21 @@ public class ImageAdapter extends BaseAdapter {
 
 	public void clearCachedFiles() {
 		files.clear();
+	}
+
+	public ImageAdapter getFather() {
+		return father;
+	}
+
+	public void setFather(ImageAdapter father) {
+		this.father = father;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

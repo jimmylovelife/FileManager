@@ -31,11 +31,13 @@ public class RJScanDIR implements Runnable {
 				File[] subs = rootfile.listFiles();
 				ImageAdapter tmp = new ImageAdapter(this.caller.getContext());
 				tmp.addToFiles(subs);
+				tmp.setFather(null);
+				tmp.setPath(root);
 				files.put(root, tmp);
 				caller.dataReady();
 				for (File file : subs) {
 					if (file.exists() && file.isDirectory()) {
-						dealSubFiles(file);
+						dealSubFiles(file, tmp);
 					}
 				}
 			}
@@ -44,12 +46,12 @@ public class RJScanDIR implements Runnable {
 		
 	}
 	@SuppressLint("NewApi")
-	private void dealSubFiles(File subFile) {
+	private void dealSubFiles(File subFile, ImageAdapter father) {
 		File [] subs = subFile.listFiles();
 		if (subs == null) {
 			return;
 		}
-		System.out.println("deal " + subFile.getAbsolutePath() + " have " + subs.length + " children");
+		//System.out.println("deal " + subFile.getAbsolutePath() + " have " + subs.length + " children");
 
 		ImageAdapter adapter = files.get(subFile.getAbsolutePath());
 		if (adapter != null) {
@@ -60,10 +62,12 @@ public class RJScanDIR implements Runnable {
 			adapter.addToFiles(subs);
 			files.put(subFile.getAbsolutePath(), adapter);
 		}
-		
+		adapter.setFather(father);
+		adapter.setPath(subFile.getAbsolutePath());
+
 		for (File sub : subs) {
 			if (sub.exists() && sub.isDirectory()) 
-				dealSubFiles(sub);
+				dealSubFiles(sub, adapter);
 		}
 	}
 

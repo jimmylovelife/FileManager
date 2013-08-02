@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Environment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,16 +37,14 @@ public class RJGridView extends GridLayout {
 
 	};
 
-	public RJGridView(Context context) {
-		super(context);
-		this.context = context;
-		LayoutInflater flater = LayoutInflater.from(context);
-		view = (GridView) flater.inflate(R.layout.rj_gridview, null);
-		addView(view);
-		view.setOnItemClickListener(shortClickListener);
-		files = new ConcurrentHashMap<String, ImageAdapter>();
-		rjjob = new RJScanDIR(files, this);
-		rjjob.run();
+	public boolean onBackPressed() {
+		ImageAdapter adapter = files.get(currentPath).getFather();
+		if (adapter != null) {
+			view.setAdapter(adapter);
+			currentPath = adapter.getPath();
+			return true;
+		}
+		return false;
 	}
 
 	protected void open(RJGridCell cell) {
@@ -78,5 +77,16 @@ public class RJGridView extends GridLayout {
 		if (adapter != null)
 			view.setAdapter(adapter);
 	}
-
+	
+	public RJGridView(Context context) {
+		super(context);
+		this.context = context;
+		LayoutInflater flater = LayoutInflater.from(context);
+		view = (GridView) flater.inflate(R.layout.rj_gridview, null);
+		addView(view);
+		view.setOnItemClickListener(shortClickListener);
+		files = new ConcurrentHashMap<String, ImageAdapter>();
+		rjjob = new RJScanDIR(files, this);
+		rjjob.run();
+	}
 }
