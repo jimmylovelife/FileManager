@@ -101,11 +101,11 @@ public class RJGridCell implements Comparable<RJGridCell>{
 			this.flag = 0; //IS DIR
 		} else {
 			this.flag = 1; // IS File
-			setFileActionByType(name);
+			setFiledsByType(name);
 		}
 	}
 	
-	private void setFileActionByType(String name) {
+	private void setFiledsByType(String name) {
 		String typeString;
 		int start = name.lastIndexOf('.');
 		if (start > -1) 

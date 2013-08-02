@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.RJ.RJView.RJGridCell.FileType;
 import com.RJ.filebrowser.R;
 
 public class ImageAdapter extends BaseAdapter {
@@ -56,11 +57,40 @@ public class ImageAdapter extends BaseAdapter {
 			item = (GridItem) convertView.getTag();
 		}
 		//item.icon.setImageBitmap(cell.getIcon());
-		item.icon.setImageResource(R.drawable.folder_normal);
+		//item.icon.setImageResource(R.drawable.folder_normal);
+		setIcon(item, cell);
 		item.name.setText(cell.getName());
 		return convertView;
 	}
 	
+	private void setIcon(GridItem item, RJGridCell cell) {
+		if(cell.getFlag() == 0) {
+			item.icon.setImageResource(R.drawable.folder_normal);
+		} else if (cell.getType() == FileType.AUDIO){
+			item.icon.setImageResource(R.drawable.music);
+		} else if (cell.getType() == FileType.VIDEO){
+			item.icon.setImageResource(R.drawable.video);
+		} else if (cell.getType() == FileType.IMAGE){
+			item.icon.setImageResource(R.drawable.images);
+		} else if (cell.getType() == FileType.APK){
+			item.icon.setImageResource(R.drawable.apk);
+		} else if (cell.getType() == FileType.DOC){
+			item.icon.setImageResource(R.drawable.doc);
+		} else if (cell.getType() == FileType.PPT){
+			item.icon.setImageResource(R.drawable.ppt);
+		} else if (cell.getType() == FileType.XLS){
+			item.icon.setImageResource(R.drawable.excel);
+		} else if (cell.getType() == FileType.CHM){
+			item.icon.setImageResource(R.drawable.chm);
+		} else if (cell.getType() == FileType.TXT){
+			item.icon.setImageResource(R.drawable.txt);
+		} else if (cell.getType() == FileType.PDF){
+			item.icon.setImageResource(R.drawable.pdf);
+		} else if (cell.getType() == FileType.DEFAULT){
+			item.icon.setImageResource(R.drawable.default_document);
+		}
+	}
+
 	public ImageAdapter(Context context) {
 		this.context = context;
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
