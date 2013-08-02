@@ -56,7 +56,7 @@ public class ImageAdapter extends BaseAdapter {
 			item = (GridItem) convertView.getTag();
 		}
 		//item.icon.setImageBitmap(cell.getIcon());
-		item.icon.setImageResource(R.drawable.ic_launcher);
+		item.icon.setImageResource(R.drawable.folder_normal);
 		item.name.setText(cell.getName());
 		return convertView;
 	}

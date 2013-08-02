@@ -3,17 +3,28 @@ package com.RJ.RJView;
 import java.io.File;
 import java.util.ArrayList;
 
-import android.graphics.Bitmap;
-
 public class RJGridCell implements Comparable<RJGridCell>{
 	private String name;
-	private int type; //File type
+	private FileType type; //File type
 	private String description; 
-	private Bitmap icon;
 	private File file;
 	private int flag; //0 dir, 1 file
 	private String path;
 	private ArrayList<RJGridCell> subfiles;
+	
+	enum FileType{
+		AUDIO,
+		VIDEO,
+		IMAGE,
+		APK,
+		DOC,
+		XLS,
+		PPT,
+		TXT,
+		PDF,
+		CHM,
+		DEFAULT
+	};
 	
 	public String getName() {
 		return name;
@@ -21,10 +32,10 @@ public class RJGridCell implements Comparable<RJGridCell>{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getType() {
+	public FileType getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(FileType type) {
 		this.type = type;
 	}
 	public String getDescription() {
@@ -33,12 +44,7 @@ public class RJGridCell implements Comparable<RJGridCell>{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Bitmap getIcon() {
-		return icon;
-	}
-	public void setIcon(Bitmap icon) {
-		this.icon = icon;
-	}
+	
 	public File getFile() {
 		return file;
 	}
@@ -57,20 +63,30 @@ public class RJGridCell implements Comparable<RJGridCell>{
 	public void setSubfiles(ArrayList<RJGridCell> subfiles) {
 		this.subfiles = subfiles;
 	}
+	
+	public boolean isDir() {
+		return file.exists() && file.isDirectory();
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 //TODO finish this function
 	public RJGridCell(File file) {
 		this.file = file;
-		this.path = file.getAbsolutePath();
+		this.setPath(file.getAbsolutePath());
 		this.name = file.getName();
-		//this.type = file.
+		if (file.isDirectory()) {
+			this.flag = 0;
+		}
 	}
 	
 	@Override
 	public int compareTo(RJGridCell another) {
 		return (this.name.compareTo(another.getName()));
 	}
-	public boolean isDir() {
-		return file.exists() && file.isDirectory();
-	}
+	
 }
