@@ -1,18 +1,17 @@
-package com.RJ.RJView;
+package com.RJ.RJFileOps;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-public class RJOpenVideo extends RJOpenAction {
-	
-	public RJOpenVideo(Context context, String path) {
+public class RJOpenPDF extends RJOpenAction {
+	public RJOpenPDF(Context context, String path) {
 		super(context, path);
 	}
-	@Override
 	public void open() {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setDataAndType(Uri.parse(url), "video/*");
+		intent.setDataAndType(Uri.parse(url), "application/pdf");
+		//intent.setComponent(component)
 		context.startActivity(intent);
 	}
 

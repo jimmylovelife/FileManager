@@ -1,19 +1,18 @@
-package com.RJ.RJView;
+package com.RJ.RJFileOps;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-public class RJOpenDefalut extends RJOpenAction {
+public class RJOpenVideo extends RJOpenAction {
 	
-	public RJOpenDefalut(Context context, String path) {
+	public RJOpenVideo(Context context, String path) {
 		super(context, path);
 	}
 	@Override
 	public void open() {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setDataAndType(Uri.parse(url), "*/*");
-		//intent.setComponent(component)
+		intent.setDataAndType(Uri.parse(url), "video/*");
 		context.startActivity(intent);
 	}
 

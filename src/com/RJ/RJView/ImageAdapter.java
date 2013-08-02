@@ -74,7 +74,7 @@ public class ImageAdapter extends BaseAdapter {
 	
 	public void addToFiles(File[] subs) {
 		for (File file : subs) {
-			RJGridCell cell = new RJGridCell(file);
+			RJGridCell cell = new RJGridCell(context, file);
 			files.add(cell);
 		}
 		Collections.sort(files);

@@ -48,15 +48,15 @@ public class RJGridView extends GridLayout {
 	}
 
 	protected void open(RJGridCell cell) {
-		if (cell.isDir()) {
+		if (cell.getFlag() == 0) {
 			currentPath = cell.getFile().getAbsolutePath();
 			ImageAdapter adapter = files.get(currentPath);
 			if (adapter != null) {
 				view.setAdapter(adapter);
 				
 			} else {
-				//TODO add parent path
-				//currentPath = cell.getParent().getPath();
+				//IS FILE
+				cell.openfile();
 			}
 		}
 	}
