@@ -1,21 +1,21 @@
 package com.RJ.filebrowser;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 
-import com.RJ.filebrowser.R;
+import com.RJ.RJView.RJGridView;
 
 public class MainActivity extends Activity {
-
+	private RJGridView rjview;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
-		GridView mainView = (GridView)this.findViewById(R.id.mainGridView);
-		mainView.setAdapter(new ImageAdapter(this));
+		rjview = new RJGridView(this);
+		setContentView(rjview);
 	}
 
 	@Override

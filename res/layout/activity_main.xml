@@ -8,18 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <GridView
-        android:id="@+id/mainGridView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="10dp"
-        android:columnWidth="90dp"
-        android:stretchMode="columnWidth" >
-
-    </GridView>
+    
 
 </RelativeLayout>
